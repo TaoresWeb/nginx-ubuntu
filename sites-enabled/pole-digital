@@ -1,0 +1,18 @@
+server {
+    listen 8080 default_server;
+    listen [::]:8080 default_server ipv6only=on;
+
+    root /home/laurent/Sites/pole-digital.harp/www;
+    index index.html index.htm;
+
+    server_name localhost;
+
+    include /etc/nginx/snippets/cors.conf;
+    include /etc/nginx/snippets/x-ua-compatible.conf;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+    include /etc/nginx/snippets/expires.conf;
+}
